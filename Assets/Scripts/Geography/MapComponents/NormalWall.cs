@@ -27,14 +27,11 @@ public class NormalWall : MapComponent
         Debug.Log("Item : " + item.GetInstanceID().ToString() + " is entering on normal wall (" + this.GetInstanceID().ToString() + ").");
     }
 
-    public override void ProcessStayingCharacter(
-        CharacterComponent character)
+    public override void AffectToCharacter(CharacterComponent character)
     {
-        Debug.Log("Character : " + character.GetInstanceID().ToString() + " is staying on normal wall (" + this.GetInstanceID().ToString() + ").");
     }
-    public override void ProcessStayingItem(
-        ItemComponent item)
+
+    public override void AffectToItem(ItemComponent item)
     {
-        Debug.Log("Item : " + item.GetInstanceID().ToString() + " is staying on normal wall (" + this.GetInstanceID().ToString() + ").");
     }
 }

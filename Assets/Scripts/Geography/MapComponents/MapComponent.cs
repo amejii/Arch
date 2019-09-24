@@ -26,17 +26,20 @@ public abstract class MapComponent : MonoBehaviour
         }
     }
 
-    void OnCollisionStay(Collision other) {
-        if (other.gameObject.CompareTag("CharacterObject")) {
-            ProcessStayingCharacter(other.gameObject.GetComponent<CharacterComponent>());
-        } else if (other.gameObject.CompareTag("ItemObject")) {
-            ProcessStayingItem(other.gameObject.GetComponent<ItemComponent>());
-        }
-    }
-
     public abstract void ProcessEnteringCharacter(CharacterComponent character);
     public abstract void ProcessEnteringItem(ItemComponent item);
 
-    public abstract void ProcessStayingCharacter(CharacterComponent character);
-    public abstract void ProcessStayingItem(ItemComponent item);
+    /// <summary> 
+    /// AffectToCharacter is called by a character component and
+    /// affects some side effects to the character.
+    /// </summary>
+    /// <param name="character">A CharacterComponent receiving these side effects.</param>
+    public abstract void AffectToCharacter(CharacterComponent character);
+
+    /// <summary> 
+    /// AffectToItem is called by an item component and
+    /// affects some side effects to the item.
+    /// </summary>
+    /// <param name="character">A ItemComponent receiving these side effects.</param>
+    public abstract void AffectToItem(ItemComponent item);
 }
