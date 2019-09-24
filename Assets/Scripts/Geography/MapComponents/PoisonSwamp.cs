@@ -21,7 +21,7 @@ public class PoisonSwamp : MapComponent
     {
         Debug.Log("Character: " + character.GetInstanceID().ToString() + " is entering on poison swamp (" + this.GetInstanceID().ToString());
         // ここで character component の ground field を更新する
-        AffectToCharacter(character);
+        character.Ground = this;
     }
     public override void ProcessEnteringItem(
         ItemComponent item)

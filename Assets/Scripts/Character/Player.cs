@@ -13,26 +13,21 @@ public class Player : CharacterComponent
         CharacterStates = new HashSet<CharacterState>();
         CharacterCharacteristics = new HashSet<CharacterCharacteristic>();
         // CharacterCharacteristics.Add(CharacterCharacteristic.PoisonGuard);
+        Ground = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        frame = frame++ % 100000000000;
-        if (frame == 0) {
-            string statesLog = "";
+        frame = frame++ % 1000000000000000000;
+        if (frame == 0 && Ground != null) {
+            Ground.AffectToCharacter(this);
+            string states = "";
             foreach (CharacterState s in CharacterStates)
             {
-                statesLog += s.ToString() + ", ";
+                states += s.ToString();
             }
-            Debug.Log("Player States: " + statesLog);
-
-            string characteristicsLog = "";
-            foreach (CharacterCharacteristic c in CharacterCharacteristics)
-            {
-                characteristicsLog += c.ToString() + ", ";
-            }
-            Debug.Log("Player Characteristics: " + characteristicsLog);
+            Debug.Log("Player State: " + states);
         }
     }
 
