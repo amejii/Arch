@@ -8,8 +8,11 @@ public class DungeonMap : MonoBehaviour
     private const int MAP_WIDTH = 8;
     private const float MAP_OBJECT_HEIGHT = 1;
     private const float MAP_OBJECT_WIDTH = 1;
+    [SerializeField]
     private GameObject NormalGroundObject;
+    [SerializeField]
     private GameObject PoisonSwampObject;
+    [SerializeField]
     private GameObject NormalWallObject;
 
     private GameObject[,] dungeonMap = new GameObject[MAP_HEIGHT,MAP_WIDTH];
@@ -17,9 +20,6 @@ public class DungeonMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NormalGroundObject = GameObject.Find("NormalGroundQuad");
-        PoisonSwampObject = GameObject.Find("PoisonSwampQuad");
-        NormalWallObject = GameObject.Find("NormalWallCube");
         // TODO: Map の情報を読み込む
         // 対応する MapComponent を作成/管理する
         for (int i = 0; i < MAP_HEIGHT; i++) {
