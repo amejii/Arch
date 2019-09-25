@@ -32,7 +32,7 @@ public class DungeonMap : MonoBehaviour
                         Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 }
                 // 毒沼の生成箇所は中央
-                else if (i == MAP_HEIGHT / 2 && j == MAP_WIDTH) 
+                else if (i == MAP_HEIGHT / 2 && j == MAP_WIDTH / 2) 
                 {
                     Debug.Log("毒沼");
                     dungeonMap[i, j] = Instantiate(PoisonSwampObject,
