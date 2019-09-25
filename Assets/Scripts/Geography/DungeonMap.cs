@@ -28,23 +28,23 @@ public class DungeonMap : MonoBehaviour
                 if (i == 0 || i == MAP_HEIGHT - 1 || j == 0 || j == MAP_WIDTH - 1)
                 {
                     dungeonMap[i, j] = Instantiate(NormalWallObject,
-                        new Vector3(j*MAP_OBJECT_WIDTH, i*MAP_OBJECT_HEIGHT),
-                        new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                        new Vector3(i*MAP_OBJECT_HEIGHT, 0.0f, j*MAP_OBJECT_WIDTH),
+                        Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 }
                 // 毒沼の生成箇所は中央
                 else if (i == MAP_HEIGHT / 2 && j == MAP_WIDTH) 
                 {
                     Debug.Log("毒沼");
                     dungeonMap[i, j] = Instantiate(PoisonSwampObject,
-                        new Vector3(j*MAP_OBJECT_WIDTH, i*MAP_OBJECT_HEIGHT),
-                        new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                        new Vector3(i*MAP_OBJECT_HEIGHT, 0.0f, j*MAP_OBJECT_WIDTH),
+                        Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 }
                 // その他は単なる何の変哲もない地面です
                 else {
                     Debug.Log("地面");
                     dungeonMap[i, j] = Instantiate(NormalGroundObject,
-                        new Vector3(j*MAP_OBJECT_WIDTH, i*MAP_OBJECT_HEIGHT),
-                        new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+                        new Vector3(i*MAP_OBJECT_HEIGHT, 0.0f, j*MAP_OBJECT_WIDTH),
+                        Quaternion.Euler(90.0f, 0.0f, 0.0f));
                 }
             }
         }
