@@ -29,6 +29,28 @@ public class Player : CharacterComponent
             }
             Debug.Log("Player State: " + states);
         }
+        CatchPlayerInput();
     }
 
+    void CatchPlayerInput(){
+        if(isMoveFinished){
+            var horizontal = Input.GetAxis("Horizontal");
+            var vertical = Input.GetAxis("Vertical");
+
+            var moveAmount = Vector3.zero;
+            if(horizontal<0){
+                moveAmount.x = -1.0f;
+            }else if(horizontal>0){
+                moveAmount.x = 1.0f;
+            }
+            if(vertical<0){
+                moveAmount.z = -1.0f;
+            }else if(vertical>0){
+                moveAmount.z = 1.0f;
+            }
+            var newPosition = this.transform.position + moveAmount;
+            //Debug.Log(newPosition);
+            StartCoroutine(CharacterMovement(newPosition));
+        }   
+    }
 }
