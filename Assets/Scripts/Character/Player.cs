@@ -6,6 +6,7 @@ public class Player : CharacterComponent
 {
     private long frame;
 
+    private bool inputInLastFrame = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,21 +37,30 @@ public class Player : CharacterComponent
         if(isMoveFinished){
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
+            bool someInput = Mathf.Abs(horizontal) > float.Epsilon || Mathf.Abs(vertical) > float.Epsilon;
 
-            var moveAmount = Vector3.zero;
-            if(horizontal<0){
-                moveAmount.x = -1.0f;
-            }else if(horizontal>0){
-                moveAmount.x = 1.0f;
+            if(someInput && !inputInLastFrame)
+            {
+                var moveAmount = Vector3.zero;
+                if(horizontal<0){
+                    moveAmount.x = -1.0f;
+                }else if(horizontal>0){
+                    moveAmount.x = 1.0f;
+                }
+                if(vertical<0){
+                    moveAmount.z = -1.0f;
+                }else if(vertical>0){
+                    moveAmount.z = 1.0f;
+                }
+                var newPosition = this.transform.position + moveAmount;
+                //Debug.Log(newPosition);
+                StartCoroutine(CharacterMovement(newPosition));
+                inputInLastFrame = true;
             }
-            if(vertical<0){
-                moveAmount.z = -1.0f;
-            }else if(vertical>0){
-                moveAmount.z = 1.0f;
+            else if(!someInput)
+            {
+                inputInLastFrame = false;
             }
-            var newPosition = this.transform.position + moveAmount;
-            //Debug.Log(newPosition);
-            StartCoroutine(CharacterMovement(newPosition));
         }   
     }
 }

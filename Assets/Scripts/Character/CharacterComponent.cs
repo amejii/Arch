@@ -14,7 +14,7 @@ public class CharacterComponent : MonoBehaviour
     public MapComponent Ground { get; set; }
 
     [SerializeField]
-    protected float moveTime = 1.0f;
+    protected float moveTime = 0.1f;
     protected bool isMoveFinished = true;
 
     // Start is called before the first frame update
