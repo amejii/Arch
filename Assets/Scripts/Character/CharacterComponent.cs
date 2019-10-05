@@ -13,6 +13,10 @@ public class CharacterComponent : MonoBehaviour
     // Turn が回ってきた際に自分が立っている場所の MapComponent
     public MapComponent Ground { get; set; }
 
+    [SerializeField]
+    protected float moveTime = 0.1f;
+    protected bool isMoveFinished = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +27,17 @@ public class CharacterComponent : MonoBehaviour
     void Update()
     {
         
+    }
+
+    protected IEnumerator CharacterMovement(Vector3 end){
+        isMoveFinished = false;
+        while(float.Epsilon < (transform.position - end).sqrMagnitude)
+        {
+            var newPosition = Vector3.MoveTowards(transform.position, end, (1.0f/moveTime) * Time.deltaTime);
+            transform.position = newPosition;
+            yield return null;
+        }
+        transform.position = end;
+        isMoveFinished = true;
     }
 }
