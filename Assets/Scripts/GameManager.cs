@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private DungeonMap map;
     void Start()
     {
         // Game Loopのための初期化処理
         // Gameに必要な初期化処理の起点がここ
         // DungeonMapを含んだ
+        Instantiate(map.gameObject,Vector3.zero,Quaternion.identity);
+        Instantiate(player.gameObject,new Vector3(5.0f,0.5f,5.0f),Quaternion.identity);
     }
 
     void Update()
